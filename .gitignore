@@ -3,6 +3,10 @@
 # dependencies
 /node_modules
 
+#keys
+keys.js
+dev.js
+
 # testing
 /coverage
 
