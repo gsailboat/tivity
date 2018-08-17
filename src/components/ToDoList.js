@@ -4,6 +4,7 @@ import * as actions from './../actions';
 import _ from 'lodash';
 import ToDoListItem from './ToDoListItem';
 import List from '@material-ui/core/List';
+import Button from '@material-ui/core/Button';
 
 class ToDoList extends Component {
     state = {
@@ -30,14 +31,13 @@ class ToDoList extends Component {
                 <div>
                     <form onSubmit={this.handleFormSubmit}>
                         <div>
-                            <i>note_add</i>
                             <input
                                 value={addFormValue}
                                 onChange={this.handleInputChange}
                                 id="toDoNext"
                                 type="text"
                             />
-                            <label htmlFor="toDoNext">What To Do Next</label>
+                            <p>When finished press enter to add it to ToDo List</p>
                         </div>
                     </form>
                 </div>
@@ -77,15 +77,16 @@ class ToDoList extends Component {
                     {this.renderToDos()}
                 </div>
                 <div>
-                    <button
+                    <Button
+                        color='primary'
                         onClick={() => this.setState({addFormVisible: !addFormVisible})}
                     >
                      {addFormVisible ? (
-                         <i>close</i>
+                         <b>Close</b>
                      ) : (
-                         <i>add</i>
+                         <b>Add</b>
                      )}
-                     </button>
+                     </Button>
                 </div>
             </div>
         );

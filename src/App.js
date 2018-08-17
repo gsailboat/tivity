@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-//import './App.css';
+import './App.css';
 import ToDoList from './components/ToDoList';
 
 //import CssBaseline from '@material-ui/core/CssBaseline';
@@ -12,7 +12,7 @@ import ToDoList from './components/ToDoList';
 class App extends Component {
   render() {
     return (
-      <div>
+      <div className="Body">
         <ToDoList />
       </div>
       // <React.Fragment>
