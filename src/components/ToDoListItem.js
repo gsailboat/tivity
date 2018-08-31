@@ -1,7 +1,4 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
-import { completeToDo } from "./../actions";
-import CssBaseline from '@material-ui/core/CssBaseline';
 import ListItem from '@material-ui/core/ListItem'
 import ListItemText  from '@material-ui/core/ListItemText';
 
@@ -11,14 +8,9 @@ class ToDoListItem extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            visible: false,
-            title: this.props.todo.title
+            visible: false
         }
     }
-    handleCompleteClick = completeToDoId => {
-        const { completeToDo } = this.props;
-        completeToDo(completeToDoId);
-    };
 
     makeVisible = event => {
         this.setState(prevState => ({
@@ -27,20 +19,26 @@ class ToDoListItem extends Component {
     }
 
     render() {
-        const { todoId, todo } = this.props;
         return (
-                <CssBaseline>
-                    <ListItem 
-                        button 
-                        onClick={() => this.handleCompleteClick(todoId)}
-                        onMouseOver={this.makeVisible}
+                    <div
+                        onMouseEnter={this.makeVisible}
+                        onMouseLeave={this.makeVisible}
                     >
-                        <ListItemText>{todo.title}{" "}</ListItemText>
-                        {this.state.visible ? <Buttons /> : null}
+                    <ListItem
+                        style={{height: "100px"}}
+                    >
+                        <ListItemText>{this.props.todo.title}{" "}</ListItemText>
+                        {this.state.visible ?
+                            <Buttons
+                                style={{height: "100px"}}
+                                todo={this.props.todo}
+                                todoId={this.props.todoId}
+                            />
+                            : null}
                     </ListItem>
-                </CssBaseline>
+                </div>
         );
     }
 }
 
-export default connect(null, { completeToDo })(ToDoListItem);
+export default ToDoListItem;

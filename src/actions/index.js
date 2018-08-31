@@ -5,8 +5,8 @@ export const addToDo = newToDo => async dispatch => {
     todosRef.push().set(newToDo);
 };
 
-export const completeToDo = completeToDoId => async dispatch => {
-    todosRef.child(completeToDoId).remove();
+export const deleteToDo = deleteToDoId => async dispatch => {
+    todosRef.child(deleteToDoId).remove();
 };
 
 export const fetchToDos = () => async dispatch => {
