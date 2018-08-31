@@ -15,21 +15,6 @@ class App extends Component {
       <div className="Body">
         <ToDoList />
       </div>
-      // <React.Fragment>
-      //   <CssBaseline/>
-      //     <div className="App">
-      //       <header className="App-header">
-      //         <h1 className="App-title">Tivity</h1>
-      //         <h4>Success Lies On the Other Side Of Fear</h4>
-      //         <Journal/>
-      //       </header>
-      //       <h1>Daily Total = {total}</h1>
-      //       <body className="Body">
-      //         <Tasks/>
-      //         <Goals/>
-      //       </body>
-      //     </div>
-      // </React.Fragment>
     );
   }
 }
