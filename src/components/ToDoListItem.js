@@ -25,6 +25,7 @@ class ToDoListItem extends Component {
                         onMouseLeave={this.makeVisible}
                     >
                     <ListItem
+                        button
                         style={{height: "100px"}}
                     >
                         <ListItemText>{this.props.todo.title}{" "}</ListItemText>

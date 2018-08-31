@@ -1,9 +1,13 @@
-import { todosRef } from "../config/firebase";
+import { todosRef, completedRef } from "../config/firebase";
 import { FETCH_TODOS } from "./types";
 
 export const addToDo = newToDo => async dispatch => {
     todosRef.push().set(newToDo);
 };
+
+export const addComplete = newComplete => async dispatch => {
+    completedRef.push().set(newComplete);
+}
 
 export const deleteToDo = deleteToDoId => async dispatch => {
     todosRef.child(deleteToDoId).remove();
