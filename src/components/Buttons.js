@@ -4,13 +4,13 @@ import IconButton from '@material-ui/core/IconButton'
 import { connect } from 'react-redux';
 import { deleteToDo } from './../actions';
 import { addComplete } from './../actions';
+import AddEdit from './AddEdit';
 
 class Buttons extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            title: this.props.todo.title,
-            editFormVisible: false
+            editFormVisible: false,
         }
     }
     
@@ -22,31 +22,26 @@ class Buttons extends Component {
     handleCompleteClick = completeToDoId => {
         const { addComplete } = this.props
         const { deleteToDo } = this.props
-        addComplete({ title: this.state.title})
+        addComplete({ title: this.props.todo.title})
         deleteToDo(completeToDoId);
     }
 
-    // handleEditChange = event => {
-
-    // }
-
     handleEditClick = () => {
-        console.log(this.state.title);
-        // return (
-        //     <div>
-        //             <form onSubmit={this.handleFormSubmit}>
-        //                 <div>
-        //                     <input
-        //                         value={this.state.title}
-        //                         onChange={this.handleEditChange}
-        //                         id="editCurrent"
-        //                         type="text"
-        //                     />
-        //                     <p>When finished press enter to add it to ToDo List</p>
-        //                 </div>
-        //             </form>
-        //         </div>
-        // )
+        console.log(this.props.todo.title);
+        console.log(this.state.editFormVisible)
+        this.setState({
+            editFormVisible: true
+        })
+    }
+
+    renderModal = () => {
+        if(this.state.editFormVisible) {
+            return (
+                <div>
+                    <AddEdit todoId={this.props.todoId} todo={this.props.todo} />
+                </div>
+            )
+        }
     }
 
 render() {
@@ -63,10 +58,11 @@ render() {
                 <MaterialIcon icon="done"/>
             </IconButton>
             <IconButton
-                onClick={() => this.handleEditClick(this.state.title)}
+                onClick={this.handleEditClick}
             >
                 <MaterialIcon icon="edit"/>
             </IconButton>
+            {this.renderModal()}
         </div>
     );
 }

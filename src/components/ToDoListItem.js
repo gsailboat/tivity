@@ -12,17 +12,17 @@ class ToDoListItem extends Component {
         }
     }
 
-    makeVisible = event => {
-        this.setState(prevState => ({
-            visible: !prevState.visible
-        }));
+    makeVisible = value => event => {
+        this.setState({
+            visible: value
+        });
     }
 
     render() {
         return (
                     <div
-                        onMouseEnter={this.makeVisible}
-                        onMouseLeave={this.makeVisible}
+                        onMouseEnter={this.makeVisible(true)}
+                        onMouseLeave={this.makeVisible(false)}
                     >
                     <ListItem
                         button
