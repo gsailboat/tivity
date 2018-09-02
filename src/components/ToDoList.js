@@ -17,22 +17,21 @@ class ToDoList extends Component {
     };
 
     handleFormSubmit = event => {
-        const { addFormValue } = this.state;
         const { addToDo } = this.props;
         event.preventDefault();
-        addToDo({ title: addFormValue });
+        addToDo({ title: this.state.addFormValue});
         this.setState({ addFormValue: "" });
     };
 
     renderAddForm = () => {
-        const { addFormVisible, addFormValue } = this.state;
-        if (addFormVisible) {
+        // const { addFormVisible, addFormValue } = this.state;
+        if (this.state.addFormVisible) {
             return (
                 <div>
                     <form onSubmit={this.handleFormSubmit}>
                         <div>
                             <input
-                                value={addFormValue}
+                                value={this.state.addFormValue}
                                 onChange={this.handleInputChange}
                                 id="toDoNext"
                                 type="text"
