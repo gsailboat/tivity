@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import * as actions from './../actions';
 import _ from 'lodash';
 import ToDoListItem from './ToDoListItem';
+import AddEdit from './AddEdit';
 import List from '@material-ui/core/List';
 import Button from '@material-ui/core/Button';
 
@@ -24,21 +25,10 @@ class ToDoList extends Component {
     };
 
     renderAddForm = () => {
-        // const { addFormVisible, addFormValue } = this.state;
         if (this.state.addFormVisible) {
             return (
                 <div>
-                    <form onSubmit={this.handleFormSubmit}>
-                        <div>
-                            <input
-                                value={this.state.addFormValue}
-                                onChange={this.handleInputChange}
-                                id="toDoNext"
-                                type="text"
-                            />
-                            <p>When finished press enter to add it to ToDo List</p>
-                        </div>
-                    </form>
+                    <AddEdit todo={this.props.todo} todoId={this.props.todoId}/>
                 </div>
             );
         }
@@ -80,11 +70,7 @@ class ToDoList extends Component {
                         color='primary'
                         onClick={() => this.setState({addFormVisible: !addFormVisible})}
                     >
-                     {addFormVisible ? (
-                         <b>Close</b>
-                     ) : (
                          <b>Add</b>
-                     )}
                      </Button>
                 </div>
             </div>

@@ -4,6 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
 import { changeToDo } from '../actions';
+import { addToDo } from '../actions';
 import { connect } from 'react-redux';
 
 class AddEdit extends Component {
@@ -30,6 +31,16 @@ class AddEdit extends Component {
         })
     }
 
+    handleAdd = event => {
+        const { addToDo } = this.props;
+        event.preventDefault();
+        addToDo({ title: this.state.change })
+        this.setState({
+            open: false,
+            change: ""
+        })
+    }
+
     handleCancel = () => {
         this.setState({
             open: false,
@@ -37,8 +48,25 @@ class AddEdit extends Component {
         })
     }
 
+    submitOption = () => {
+        if (this.props.todo !== undefined) {
+            return (
+                <Button color="primary" onClick={() => {this.handleSubmit(this.props.todoId)}}>
+                    Submit
+                </Button>
+            );
+        }
+        else
+            return (
+                <Button color="primary" onClick={this.handleAdd}>
+                    Add Todo
+                </Button>
+            )
+    }
+
     render() {
-        console.log(this.props.todo.title)
+        //const name = this.props.todo.title === undefined ? "" : this.props.todo.title;
+        var name = this.props.todo === undefined ? "" : this.props.todo.title;
         return (
             <div>
                 <Modal
@@ -46,18 +74,19 @@ class AddEdit extends Component {
                 >
                     <div>
                             <Typography variant="title" id="modal-title">
-                                {this.props.todo.title ? "Edit Todo" : "Add Todo" }
+                                { name ? "Edit Todo" : "Add Todo" }
                             </Typography>
                         <Input
                             onChange={this.handleInputChange}
-                            defaultValue={this.props.todo.title}
+                            defaultValue={name}
                         />
                         <Button color="secondary" onClick={this.handleCancel}>
                             Cancel
                         </Button>
-                        <Button color="primary" onClick={() => {this.handleSubmit(this.props.todoId)}}>
+                        {/* <Button color="primary" onClick={() => {this.handleSubmit(this.props.todoId)}}>
                             Submit
-                        </Button>
+                        </Button> */}
+                        {this.submitOption()}
                     </div>
                 </Modal>
             </div>
@@ -65,4 +94,4 @@ class AddEdit extends Component {
     }
 }
 
-export default connect(null, { changeToDo })(AddEdit);
+export default connect(null, { changeToDo, addToDo })(AddEdit);
