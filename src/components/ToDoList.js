@@ -59,6 +59,7 @@ class ToDoList extends Component {
 
     render() {
         const { addFormVisible } = this.state;
+        const count = this.props.data ? Object.keys(this.props.data).length : 0;
         return(
             <div>
                 <div>
@@ -69,6 +70,7 @@ class ToDoList extends Component {
                     <Button
                         color='primary'
                         onClick={() => this.setState({addFormVisible: !addFormVisible})}
+                        disabled={count < 6 ? false : true}
                     >
                          <b>Add</b>
                      </Button>
