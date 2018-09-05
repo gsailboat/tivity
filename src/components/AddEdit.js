@@ -25,6 +25,7 @@ class AddEdit extends Component {
     handleSubmit = (changeToDoId) => {
         const { changeToDo } = this.props;
         changeToDo(changeToDoId, {title: this.state.change});
+        this.props.reset();
         this.setState({
             open: false,
             change: ""
@@ -35,6 +36,7 @@ class AddEdit extends Component {
         const { addToDo } = this.props;
         event.preventDefault();
         addToDo({ title: this.state.change })
+        this.props.reset();
         this.setState({
             open: false,
             change: ""
@@ -42,6 +44,7 @@ class AddEdit extends Component {
     }
 
     handleCancel = () => {
+        this.props.reset();
         this.setState({
             open: false,
             change: ""
@@ -66,7 +69,6 @@ class AddEdit extends Component {
 
     render() {
         var name = this.props.todo === undefined ? "" : this.props.todo.title;
-        console.log("addedit " + this.state.open)
         return (
             <div>
                 <Modal

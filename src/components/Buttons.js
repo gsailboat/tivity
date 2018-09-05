@@ -27,7 +27,6 @@ class Buttons extends Component {
     }
 
     handleEditClick = () => {
-        console.log("Edit " + this.state.editFormVisible)
         this.setState({
             editFormVisible: true
         })
@@ -37,7 +36,11 @@ class Buttons extends Component {
         if (this.state.editFormVisible) {
             return (
                 <div>
-                    <AddEdit todoId={this.props.todoId} todo={this.props.todo} />
+                    <AddEdit
+                        todoId={this.props.todoId}
+                        todo={this.props.todo}
+                        reset={() => this.setState({editFormVisible: false})}
+                    />
                 </div>
             )
         }

@@ -8,16 +8,22 @@ import List from '@material-ui/core/List';
 import Button from '@material-ui/core/Button';
 
 class ToDoList extends Component {
-    state = {
-        addFormVisible: false,
+    constructor(props) {
+        super(props);
+        this.state = {
+            addFormVisible: false,
+        };
     };
 
     renderAddForm = () => {
-        console.log("Add " + this.state.addFormVisible)
         if (this.state.addFormVisible) {
             return (
                 <div>
-                    <AddEdit todo={this.props.todo} todoId={this.props.todoId}/>
+                    <AddEdit
+                        todo={this.props.todo}
+                        todoId={this.props.todoId}
+                        reset={() => this.setState({addFormVisible: false})}
+                    />
                 </div>
             );
         }
@@ -47,7 +53,6 @@ class ToDoList extends Component {
     }
 
     render() {
-        const { addFormVisible } = this.state;
         const count = this.props.data ? Object.keys(this.props.data).length : 0;
         return(
             <div>
@@ -58,7 +63,7 @@ class ToDoList extends Component {
                 <div>
                     <Button
                         color='primary'
-                        onClick={() => this.setState({addFormVisible: !addFormVisible})}
+                        onClick={() => this.setState({addFormVisible: true})}
                         disabled={count < 6 ? false : true}
                     >
                          <b>Add</b>
