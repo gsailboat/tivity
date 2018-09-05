@@ -10,21 +10,10 @@ import Button from '@material-ui/core/Button';
 class ToDoList extends Component {
     state = {
         addFormVisible: false,
-        addFormValue: ""
-    };
-
-    handleInputChange = event => {
-        this.setState({ addFormValue: event.target.value });
-    };
-
-    handleFormSubmit = event => {
-        const { addToDo } = this.props;
-        event.preventDefault();
-        addToDo({ title: this.state.addFormValue});
-        this.setState({ addFormValue: "" });
     };
 
     renderAddForm = () => {
+        console.log("Add " + this.state.addFormVisible)
         if (this.state.addFormVisible) {
             return (
                 <div>

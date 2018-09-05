@@ -27,15 +27,14 @@ class Buttons extends Component {
     }
 
     handleEditClick = () => {
-        console.log(this.props.todo.title);
-        console.log(this.state.editFormVisible)
+        console.log("Edit " + this.state.editFormVisible)
         this.setState({
             editFormVisible: true
         })
     }
 
     renderModal = () => {
-        if(this.state.editFormVisible) {
+        if (this.state.editFormVisible) {
             return (
                 <div>
                     <AddEdit todoId={this.props.todoId} todo={this.props.todo} />

@@ -65,17 +65,17 @@ class AddEdit extends Component {
     }
 
     render() {
-        //const name = this.props.todo.title === undefined ? "" : this.props.todo.title;
         var name = this.props.todo === undefined ? "" : this.props.todo.title;
+        console.log("addedit " + this.state.open)
         return (
             <div>
                 <Modal
                     open={this.state.open}
                 >
                     <div>
-                            <Typography variant="title" id="modal-title">
-                                { name ? "Edit Todo" : "Add Todo" }
-                            </Typography>
+                        <Typography variant="title" id="modal-title">
+                            { name ? "Edit Todo" : "Add Todo" }
+                        </Typography>
                         <Input
                             onChange={this.handleInputChange}
                             defaultValue={name}
@@ -83,9 +83,6 @@ class AddEdit extends Component {
                         <Button color="secondary" onClick={this.handleCancel}>
                             Cancel
                         </Button>
-                        {/* <Button color="primary" onClick={() => {this.handleSubmit(this.props.todoId)}}>
-                            Submit
-                        </Button> */}
                         {this.submitOption()}
                     </div>
                 </Modal>
