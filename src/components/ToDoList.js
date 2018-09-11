@@ -6,12 +6,22 @@ import ToDoListItem from './ToDoListItem';
 import AddEdit from './AddEdit';
 import List from '@material-ui/core/List';
 import Button from '@material-ui/core/Button';
+// import Collapse from '@material-ui/core/Collapse';
+// import Card from '@material-ui/core/Card';
+// import CardHeader from '@material-ui/core/CardHeader';
+// import IconButton from '@material-ui/core/IconButton';
+// import MaterialIcon from 'material-icons-react'
+
+// const buttonCenter = {
+//     margin: 'auto'
+// };
 
 class ToDoList extends Component {
     constructor(props) {
         super(props);
         this.state = {
             addFormVisible: false,
+            expanded: false
         };
     };
 
@@ -64,10 +74,12 @@ class ToDoList extends Component {
                     <Button
                         color='primary'
                         onClick={() => this.setState({addFormVisible: true})}
+                        // style={(margin:"auto")}
+                        // className={buttonCenter}
                         disabled={count < 6 ? false : true}
                     >
-                         <b>Add</b>
-                     </Button>
+                        <b>Add</b>
+                    </Button>
                 </div>
             </div>
         );
