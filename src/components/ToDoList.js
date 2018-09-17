@@ -74,8 +74,6 @@ class ToDoList extends Component {
                     <Button
                         color='primary'
                         onClick={() => this.setState({addFormVisible: true})}
-                        // style={(margin:"auto")}
-                        // className={buttonCenter}
                         disabled={count < 6 ? false : true}
                     >
                         <b>Add</b>
