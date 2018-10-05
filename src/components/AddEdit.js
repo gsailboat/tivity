@@ -5,7 +5,10 @@ import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
 import { changeToDo } from '../actions';
 import { addToDo } from '../actions';
+// import { addTime } from '../actions';
 import { connect } from 'react-redux';
+import moment from 'moment';
+
 
 class AddEdit extends Component {
     constructor(props) {
@@ -35,7 +38,7 @@ class AddEdit extends Component {
     handleAdd = event => {
         const { addToDo } = this.props;
         event.preventDefault();
-        addToDo({ title: this.state.change })
+        addToDo({ title: this.state.change, time: moment().calendar() });
         this.props.reset();
         this.setState({
             open: false,
@@ -69,6 +72,7 @@ class AddEdit extends Component {
 
     render() {
         var name = this.props.todo === undefined ? "" : this.props.todo.title;
+        console.log(moment().calendar());
         return (
             <div>
                 <Modal

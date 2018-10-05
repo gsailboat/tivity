@@ -5,6 +5,10 @@ export const addToDo = newToDo => async dispatch => {
     todosRef.push().set(newToDo);
 };
 
+// export const addTime = (toDoId, time) => async dispatch => {
+//     todosRef.push().set(time);
+// }
+
 export const addComplete = newComplete => async dispatch => {
     completedRef.push().set(newComplete);
 }

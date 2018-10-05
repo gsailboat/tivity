@@ -26,4 +26,5 @@ yarn-error.log*
 .firebaserc
 firebase.json
 functions/node_modules
+init.json
 package-lock.json
