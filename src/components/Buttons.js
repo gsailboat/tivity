@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { deleteToDo } from './../actions';
 import { addComplete } from './../actions';
 import AddEdit from './AddEdit';
+import moment from 'moment';
 
 class Buttons extends Component {
     constructor(props) {
@@ -22,7 +23,7 @@ class Buttons extends Component {
     handleCompleteClick = completeToDoId => {
         const { addComplete } = this.props
         const { deleteToDo } = this.props
-        addComplete({ title: this.props.todo.title})
+        addComplete({ title: this.props.todo.title, creationTime: this.props.todo.time, completionTime: moment().format()})
         deleteToDo(completeToDoId);
     }
 
@@ -47,10 +48,13 @@ class Buttons extends Component {
     }
 
 render() {
+    const start = moment().diff(this.props.todo.time, 'hours');
+    console.log(start);
     return (
         <div style={{display: "inline-block"}}>
             <IconButton
                 onClick={() => this.handleDeleteClick(this.props.todoId)}
+                disabled={start >= 24 ? true : false}
             >
                 <MaterialIcon icon="delete"/>
             </IconButton>
@@ -61,6 +65,7 @@ render() {
             </IconButton>
             <IconButton
                 onClick={this.handleEditClick}
+                disabled={start >= 24 ? true : false}
             >
                 <MaterialIcon icon="edit"/>
             </IconButton>

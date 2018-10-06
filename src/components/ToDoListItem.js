@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ListItem from '@material-ui/core/ListItem'
 import ListItemText  from '@material-ui/core/ListItemText';
-
+import moment from 'moment';
 import Buttons from './Buttons';
 
 class ToDoListItem extends Component {
@@ -19,6 +19,9 @@ class ToDoListItem extends Component {
     }
 
     render() {
+        // var a = this.props.todo.time;
+        // var b = moment().format();
+        // console.log(moment.duration(a.diff(b)));
         return (
                     <div
                         onMouseEnter={this.makeVisible(true)}
@@ -29,6 +32,7 @@ class ToDoListItem extends Component {
                         style={{height: "100px"}}
                     >
                         <ListItemText>{this.props.todo.title}{" "}</ListItemText>
+                        <ListItemText>{moment(this.props.todo.time).fromNow()}</ListItemText>
                         {this.state.visible ?
                             <Buttons
                                 style={{height: "100px"}}

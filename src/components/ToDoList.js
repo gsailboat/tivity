@@ -6,15 +6,6 @@ import ToDoListItem from './ToDoListItem';
 import AddEdit from './AddEdit';
 import List from '@material-ui/core/List';
 import Button from '@material-ui/core/Button';
-// import Collapse from '@material-ui/core/Collapse';
-// import Card from '@material-ui/core/Card';
-// import CardHeader from '@material-ui/core/CardHeader';
-// import IconButton from '@material-ui/core/IconButton';
-// import MaterialIcon from 'material-icons-react'
-
-// const buttonCenter = {
-//     margin: 'auto'
-// };
 
 class ToDoList extends Component {
     constructor(props) {
@@ -41,6 +32,7 @@ class ToDoList extends Component {
 
     renderToDos() {
         const { data } = this.props;
+        // console.log("keys" + data.value);
         const toDos = _.map(data, (value, key) => {
             return <ToDoListItem key={key} todoId={key} todo={value} />;
         });
