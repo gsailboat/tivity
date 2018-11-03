@@ -2,8 +2,7 @@ import React, { Component } from "react";
 import MaterialIcon from 'material-icons-react';
 import IconButton from '@material-ui/core/IconButton'
 import { connect } from 'react-redux';
-import { deleteToDo } from './../actions';
-import { addComplete } from './../actions';
+import { deleteToDo, addComplete} from './../actions';
 import AddEdit from './AddEdit';
 import moment from 'moment';
 
@@ -21,9 +20,17 @@ class Buttons extends Component {
     }
 
     handleCompleteClick = completeToDoId => {
-        const { addComplete } = this.props
-        const { deleteToDo } = this.props
-        addComplete({ title: this.props.todo.title, creationTime: this.props.todo.time, completionTime: moment().format()})
+        const time = moment().diff(this.props.todo.time, 'hours') / 24;
+        const point = time < 4 ? Math.abs(time - 4) : 0.5;
+        const { addComplete } = this.props;
+        const { deleteToDo } = this.props;
+        addComplete({
+            title: this.props.todo.title,
+            creationTime: this.props.todo.time,
+            completionTime: moment().format(),
+            daysLate: time,
+            points: point
+        })
         deleteToDo(completeToDoId);
     }
 
@@ -49,7 +56,6 @@ class Buttons extends Component {
 
 render() {
     const start = moment().diff(this.props.todo.time, 'hours');
-    console.log(start);
     return (
         <div style={{display: "inline-block"}}>
             <IconButton
