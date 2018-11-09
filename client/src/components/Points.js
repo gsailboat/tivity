@@ -1,12 +1,6 @@
 import React, { Component } from 'react';
-// import { connect } from 'react-redux';
-// import * as actions from './../actions';
-// import _ from 'lodash';
-import { Typography } from '@material-ui/core';
-// import { AppBar } from '@material-ui/core';
-import { Tabs, Tab, Paper } from '@material-ui/core';
-//import { timingSafeEqual } from 'crypto';
-// import { __generator } from '../../node_modules/tslib';
+import { Tabs, Tab, Paper, Typography } from '@material-ui/core';
+import Current from "./Current";
 
 class DailyPoints extends Component {
     constructor(props) {
@@ -53,7 +47,7 @@ class DailyPoints extends Component {
                             <Tab label="Current"/>
                             <Tab label="History"/>
                         </Tabs>
-                        {this.state.current === 0 && <h1>HI</h1>}
+                        {this.state.current === 0 && <Current />}
                         {this.state.current === 1 && <h1>BYE</h1>}
                     </Paper>
                 </div>
