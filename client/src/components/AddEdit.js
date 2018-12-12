@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
-import Modal from '@material-ui/core/Modal';
-import Typography from '@material-ui/core/Typography';
-import Input from '@material-ui/core/Input';
-import Button from '@material-ui/core/Button';
 import { changeToDo } from '../actions';
 import { addToDo } from '../actions';
 // import { addTime } from '../actions';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import moment from 'moment';
+import Theme from './colors';
+import { Typography, Input, Button, Modal, CssBaseline, MuiThemeProvider } from '@material-ui/core'
 
+    //  const styles = theme => ({
+    //      modal: {
+    //          backgroundColor: Theme.pallete.secondary.main
+    //      }
+    //  });
 
 class AddEdit extends Component {
     constructor(props) {
@@ -72,28 +76,39 @@ class AddEdit extends Component {
 
     render() {
         var name = this.props.todo === undefined ? "" : this.props.todo.title;
+        // const {classes} = this.props;
         return (
-            <div>
-                <Modal
-                    open={this.state.open}
-                >
-                    <div>
-                        <Typography variant="title" id="modal-title">
-                            { name ? "Edit Todo" : "Add Todo" }
-                        </Typography>
-                        <Input
-                            onChange={this.handleInputChange}
-                            defaultValue={name}
-                        />
-                        <Button color="secondary" onClick={this.handleCancel}>
-                            Cancel
-                        </Button>
-                        {this.submitOption()}
-                    </div>
-                </Modal>
-            </div>
+            <React.Fragment>
+                <CssBaseline />
+                    <MuiThemeProvider theme={Theme}>
+                        <div>
+                            <Modal
+                                open={this.state.open}
+                            >
+                                <div>
+                                    <Typography variant="title" id="modal-title">
+                                        { name ? "Edit Todo" : "Add Todo" }
+                                    </Typography>
+                                    <Input
+                                        onChange={this.handleInputChange}
+                                        defaultValue={name}
+                                    />
+                                    <Button color="secondary" onClick={this.handleCancel}>
+                                        Cancel
+                                    </Button>
+                                    {this.submitOption()}
+                                </div>
+                            </Modal>
+                        </div>
+                </MuiThemeProvider>
+            </React.Fragment>
         );
     }
 }
 
+AddEdit.propTypes = {
+    classes: PropTypes.object.isRequired
+};
+
 export default connect(null, { changeToDo, addToDo })(AddEdit);
+// export default withStyles(styles)(AddEdit);

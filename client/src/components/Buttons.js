@@ -1,10 +1,13 @@
 import React, { Component } from "react";
 import MaterialIcon from 'material-icons-react';
-import IconButton from '@material-ui/core/IconButton'
+import { IconButton } from '@material-ui/core';
+import { MuiThemeProvider } from '@material-ui/core/styles'
+import Theme from './colors/'
 import { connect } from 'react-redux';
 import { deleteToDo, addComplete} from './../actions';
 import AddEdit from './AddEdit';
 import moment from 'moment';
+
 
 class Buttons extends Component {
     constructor(props) {
@@ -56,27 +59,33 @@ class Buttons extends Component {
 
 render() {
     const start = moment().diff(this.props.todo.time, 'hours');
+    //const classes = this.props;
     return (
-        <div style={{display: "inline-block"}}>
-            <IconButton
-                onClick={() => this.handleDeleteClick(this.props.todoId)}
-                disabled={start >= 24 ? true : false}
-            >
-                <MaterialIcon icon="delete"/>
-            </IconButton>
-            <IconButton 
-                onClick={() => this.handleCompleteClick(this.props.todoId)}
-            >
-                <MaterialIcon icon="done"/>
-            </IconButton>
-            <IconButton
-                onClick={this.handleEditClick}
-                disabled={start >= 24 ? true : false}
-            >
-                <MaterialIcon icon="edit"/>
-            </IconButton>
-            {this.renderModal()}
-        </div>
+        <MuiThemeProvider theme={Theme}>
+            {/* <div style={{display: "inline-block"}}> */}
+                    <IconButton
+                        onClick={() => this.handleDeleteClick(this.props.todoId)}
+                        disabled={start >= 24 ? true : false}
+                        // color= {Theme.palette.secondary}
+                    >
+                        <MaterialIcon icon="delete"/>
+                    </IconButton>
+                    <IconButton 
+                        onClick={() => this.handleCompleteClick(this.props.todoId)}
+                        // color= {Theme.palette.secondary}
+                    >
+                        <MaterialIcon icon="done"/>
+                    </IconButton>
+                    <IconButton
+                        onClick={this.handleEditClick}
+                        disabled={start >= 24 ? true : false}
+                        // color= {Theme.palette.secondary}
+                    >
+                        <MaterialIcon icon="edit"/>
+                    </IconButton>
+                    {this.renderModal()}
+            {/* </div> */}
+        </MuiThemeProvider>
     );
 }
 }

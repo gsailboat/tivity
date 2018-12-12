@@ -5,7 +5,25 @@ import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import IconButton from '@material-ui/core/IconButton';
 import MaterialIcon from 'material-icons-react';
+import PropTypes from 'prop-types';
+import { withStyles, MuiThemeProvider } from '@material-ui/core/styles';
+import Theme from './colors';
 import ToDoList from './ToDoList';
+// import '../App.css';
+
+const styles = theme => ({
+    title: {
+        backgroundColor: Theme.palette.secondary.main
+    },
+    card: {
+        width: '85vw',
+        margin: 'auto',
+        marginTop: '1vh'
+    },
+    icon: {
+        backgroundColor: Theme.palette.primary.main,
+    }
+})
 
 class Extend extends Component {
     constructor(props) {
@@ -24,12 +42,19 @@ class Extend extends Component {
     }
 
     render() {
+        const { classes } = this.props
         return(
-            <div>
-                <Card>
+            <MuiThemeProvider theme={Theme}>
+                <Card
+                    className={classes.card}
+                >
                     <CardHeader
+                        className={classes.title}
                         action={
-                            <IconButton onClick={this.handleExpand}>
+                            <IconButton
+                                onClick={this.handleExpand}
+                                className={classes.icon}    
+                            >
                                 <MaterialIcon icon={this.state.more}/>
                             </IconButton>
                         }
@@ -41,9 +66,13 @@ class Extend extends Component {
                         </CardContent>
                     </Collapse>
                 </Card>
-            </div>
+            </MuiThemeProvider>
         )
     }
 }
 
-export default Extend;
+Extend.propTypes = {
+    classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(Extend);

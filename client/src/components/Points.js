@@ -1,6 +1,24 @@
 import React, { Component } from 'react';
 import { Tabs, Tab, Paper, Typography } from '@material-ui/core';
+import { MuiThemeProvider, withStyles } from'@material-ui/core/styles';
+import PropTypes from 'prop-types';
+import Theme from './colors';
 import Current from "./Current";
+import '../App.css'
+
+const styles = theme => ({
+    point: {
+        width: "85vw",
+        margin: 'auto' 
+    },
+    tab: {
+        backgroundColor: Theme.palette.primary.main,
+        color: Theme.palette.primary.contrastText
+    },
+    title: {
+        fontFamily: Theme.palette.title
+    }
+})
 
 class DailyPoints extends Component {
     constructor(props) {
@@ -12,9 +30,9 @@ class DailyPoints extends Component {
 
     renderPoints() {
         if(this.state.current) {
-            return <h3>{this.props.tday}</h3>
+            return <Typography variant='h2' component='h4'>{this.props.tday}</Typography>
         }
-        return <h3>{this.props.tweek}</h3>
+        return <Typography variant='h2' component='h4'>{this.props.tweek}</Typography>
     }
 
     // componentWillMount() {
@@ -28,32 +46,32 @@ class DailyPoints extends Component {
     };
 
     render() {
-        //const { classes }= 
+        const { classes }= this.props;
         console.log(this.state.current);
-        return(
-            <div>
-                <div>
-                    <Typography align='center' variant='title'>
-                        Tivity
-                    </Typography>
-                </div>
-                <div>
-                    <Paper>
-                        <Tabs
-                            value={this.state.current}
-                            onChange={this.handleChange}
-                            centered
-                        >
-                            <Tab label="Current"/>
-                            <Tab label="History"/>
-                        </Tabs>
-                        {this.state.current === 0 && <Current />}
-                        {this.state.current === 1 && <h1>BYE</h1>}
-                    </Paper>
-                </div>
-            </div>
+        return(            
+            <MuiThemeProvider theme={Theme}>
+                <Typography align='center' variant='h2' component='h2' className={classes.title}>
+                    Tivity
+                </Typography>
+                <Paper className={classes.point}>
+                    <Tabs
+                        value={this.state.current}
+                        onChange={this.handleChange}
+                        centered
+                    >
+                        <Tab label="Current" className={classes.tab}/>
+                        <Tab label="History" className={classes.tab}/>
+                    </Tabs>
+                    {this.state.current === 0 && <Current />}
+                    {this.state.current === 1 && <Typography variant='h2' component='head'>BYE</Typography>}
+                </Paper>
+            </MuiThemeProvider>
         );
     }
 }
 
-export default DailyPoints;
+DailyPoints.propTypes = {
+    classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(DailyPoints);

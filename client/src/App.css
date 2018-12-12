@@ -1,31 +1,6 @@
-.App {
-  text-align: center;
-}
-
-.App-header {
-  background-color: #aaa;
-  height: 300px;
-  padding: 20px;
-  color: white;
-}
+@import url('https://fonts.googleapis.com/css?family=Pacifico');
 
 .Body {
-  background-color: #aaa;
-}
-
-.App-title {
-  font-size: 1.5em;
-}
-
-.App-intro {
-  font-size: large;
-}
-
-.Goals {
-  display: inline-block
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  background-color: #444;
+  height: 100vw
 }
