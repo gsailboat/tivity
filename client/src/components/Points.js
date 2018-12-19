@@ -15,8 +15,15 @@ const styles = theme => ({
         backgroundColor: Theme.palette.primary.main,
         color: Theme.palette.primary.contrastText
     },
+    head: {
+        margin: 'auto',
+        padding: '10vh'
+    },
     title: {
-        fontFamily: Theme.palette.title
+        fontFamily: "'Pacifico', cursive",
+        fontWeight: "normal",
+        src: "url('https://fonts.googleapis.com/css?family=Pacifico')",
+        color: Theme.palette.primary.main
     }
 })
 
@@ -50,9 +57,11 @@ class DailyPoints extends Component {
         console.log(this.state.current);
         return(            
             <MuiThemeProvider theme={Theme}>
-                <Typography align='center' variant='h2' component='h2' className={classes.title}>
+                <div className={classes.head}>
+                <Typography align='center' variant='display4' component='h2' className={classes.title}>
                     Tivity
                 </Typography>
+                </div>
                 <Paper className={classes.point}>
                     <Tabs
                         value={this.state.current}
