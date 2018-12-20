@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Pacifico');
 
-.Body {
-  background-color: #444;
-  height: 100vw
+.Background {
+  background-color: #e0e0e0;
+  height: 100%;
+  /* position: fixed */
 }

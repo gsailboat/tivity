@@ -16,9 +16,10 @@ const styles = theme => ({
         backgroundColor: Theme.palette.secondary.main
     },
     card: {
-        width: '85vw',
+        // width: '95vw',
         margin: 'auto',
-        marginTop: '1vh'
+        // marginTop:
+        marginBottom: '20%'
     },
     icon: {
         backgroundColor: Theme.palette.primary.main,

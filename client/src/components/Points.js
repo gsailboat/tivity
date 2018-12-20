@@ -8,11 +8,12 @@ import '../App.css'
 
 const styles = theme => ({
     point: {
-        width: "85vw",
-        margin: 'auto' 
+        //width: "85vw",
+        margin: 'auto',
+        backgroundColor: Theme.palette.secondary.main
     },
     tab: {
-        backgroundColor: Theme.palette.primary.main,
+        backgroundColor: "#707070",
         color: Theme.palette.primary.contrastText
     },
     head: {

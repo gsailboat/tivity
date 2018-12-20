@@ -6,6 +6,15 @@ import ToDoListItem from './ToDoListItem';
 import AddEdit from './AddEdit';
 import List from '@material-ui/core/List';
 import Button from '@material-ui/core/Button';
+import { MuiThemeProvider, withStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
+import Theme from './colors'
+
+const styles = theme => ({
+    addb: {
+        textAlign: 'center'
+    }
+});
 
 class ToDoList extends Component {
     constructor(props) {
@@ -56,22 +65,27 @@ class ToDoList extends Component {
 
     render() {
         const count = this.props.data ? Object.keys(this.props.data).length : 0;
+        const {classes} = this.props;
         return(
-            <div>
+            <MuiThemeProvider theme={Theme}>
                 <div>
-                    {this.renderAddForm()}
-                    {this.renderToDos()}
+                    <div>
+                        {this.renderAddForm()}
+                        {this.renderToDos()}
+                    </div>
+                    <div className={classes.addb}>
+                        <Button
+                            variant='contained'
+                            color="primary"
+                            onClick={() => this.setState({addFormVisible: true})}
+                            disabled={count < 6 ? false : true}
+                            // className={classes.addb}
+                        >
+                            <b>Add</b>
+                        </Button>
+                    </div>
                 </div>
-                <div>
-                    <Button
-                        color='primary'
-                        onClick={() => this.setState({addFormVisible: true})}
-                        disabled={count < 6 ? false : true}
-                    >
-                        <b>Add</b>
-                    </Button>
-                </div>
-            </div>
+            </MuiThemeProvider>
         );
     }
 }
@@ -82,4 +96,8 @@ const mapStatetoProps = ({ data }) => {
     };
 };
 
-export default connect(mapStatetoProps, actions)(ToDoList);
+ToDoList.propTypes = {
+    classes: PropTypes.object.isRequired
+}
+
+export default withStyles(styles)(connect(mapStatetoProps, actions)(ToDoList));

@@ -23,7 +23,7 @@ class App extends Component {
       <React.Fragment>
         <CssBaseline />
           <MuiThemeProvider muiTheme={Theme}>
-            <div className="Body">
+            <div className="Background">
               <Points/>
               <Extend/>
             </div>

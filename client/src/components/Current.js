@@ -8,14 +8,11 @@ import Theme from './colors'
 
 const styles = theme => ({
     header: {
-        backgroundColor: Theme.palette.secondary.main,
-        color: Theme.palette.secondary.contrastText
+        backgroundColor: Theme.palette.primary.main,
+        color: Theme.palette.primary.contrastText
     },
     icon: {
-        backgroundColor: Theme.palette.primary.main,
-    },
-    ibutton: {
-        color: Theme.palette.secondary.light
+        backgroundColor: Theme.palette.secondary.main,
     }
 })
 
@@ -83,7 +80,6 @@ class Current extends Component {
                             >
                                 <MaterialIcon
                                     icon={this.state.icon}
-                                    className={classes.ibutton}
                                 />
                             </IconButton>
                         }

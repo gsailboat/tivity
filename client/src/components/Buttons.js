@@ -1,13 +1,26 @@
 import React, { Component } from "react";
 import MaterialIcon from 'material-icons-react';
 import { IconButton } from '@material-ui/core';
-import { MuiThemeProvider } from '@material-ui/core/styles'
-import Theme from './colors/'
+import Theme from './colors/';
 import { connect } from 'react-redux';
 import { deleteToDo, addComplete} from './../actions';
+import { withStyles, MuiThemeProvider } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
 import AddEdit from './AddEdit';
 import moment from 'moment';
 
+const styles = theme => ({
+    size: {
+        // height: "10vh",
+        display: "inline-block"
+    },
+    darkbuttons: {
+        backgroundColor: Theme.palette.secondary.main
+    },
+    lightbuttons: {
+        backgroundColor: Theme.palette.secondary.light
+    }
+})
 
 class Buttons extends Component {
     constructor(props) {
@@ -23,7 +36,7 @@ class Buttons extends Component {
     }
 
     handleCompleteClick = completeToDoId => {
-        const time = moment().diff(this.props.todo.time, 'hours') / 24;
+        const time = Math.round(moment().diff(this.props.todo.time, 'hours') / 24);
         const point = time < 4 ? Math.abs(time - 4) : 0.5;
         const { addComplete } = this.props;
         const { deleteToDo } = this.props;
@@ -59,34 +72,43 @@ class Buttons extends Component {
 
 render() {
     const start = moment().diff(this.props.todo.time, 'hours');
-    //const classes = this.props;
+    const classes = this.props;
+
     return (
         <MuiThemeProvider theme={Theme}>
-            {/* <div style={{display: "inline-block"}}> */}
+            <div className={classes.size}>
                     <IconButton
                         onClick={() => this.handleDeleteClick(this.props.todoId)}
                         disabled={start >= 24 ? true : false}
-                        // color= {Theme.palette.secondary}
+                        color={classes.darkbuttons}
+                        variant='contained'
                     >
                         <MaterialIcon icon="delete"/>
                     </IconButton>
                     <IconButton 
                         onClick={() => this.handleCompleteClick(this.props.todoId)}
-                        // color= {Theme.palette.secondary}
+                        color={classes.lightbuttons}
+                        variant='contained'
                     >
                         <MaterialIcon icon="done"/>
                     </IconButton>
                     <IconButton
                         onClick={this.handleEditClick}
                         disabled={start >= 24 ? true : false}
-                        // color= {Theme.palette.secondary}
+                        color= {classes.darkbuttons}
+                        variant='contained'
                     >
                         <MaterialIcon icon="edit"/>
                     </IconButton>
                     {this.renderModal()}
-            {/* </div> */}
+            </div>
         </MuiThemeProvider>
-    );
+        );
+    }
 }
+
+Buttons.propTypes ={
+    classes: PropTypes.object.isRequired
 }
-export default connect(null, { deleteToDo, addComplete })(Buttons);
+
+export default withStyles(styles)(connect(null, { deleteToDo, addComplete })(Buttons));
