@@ -8,25 +8,25 @@ import MaterialIcon from 'material-icons-react';
 import PropTypes from 'prop-types';
 import { withStyles, MuiThemeProvider } from '@material-ui/core/styles';
 import Theme from './colors';
-import ToDoList from './ToDoList';
+//import ToDoList from './ToDoList';
 // import '../App.css';
 
 const styles = theme => ({
     title: {
-        backgroundColor: Theme.palette.secondary.main
+        backgroundColor: Theme.palette.primary.main
     },
     card: {
         // width: '95vw',
         margin: 'auto',
         // marginTop:
-        //marginBottom: '20%'
+        marginBottom: '20%'
     },
     icon: {
-        backgroundColor: Theme.palette.primary.main,
+        backgroundColor: Theme.palette.secondary.main,
     }
 })
 
-class Extend extends Component {
+class Weekly extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -59,11 +59,11 @@ class Extend extends Component {
                                 <MaterialIcon icon={this.state.more}/>
                             </IconButton>
                         }
-                        title="Today's Todos"
+                        title="Weekly Chores"
                     />
                     <Collapse in={this.state.expanded}>
                         <CardContent>
-                            <ToDoList />
+                            {/* <ToDoList /> */}<h1>HI</h1>
                         </CardContent>
                     </Collapse>
                 </Card>
@@ -72,8 +72,8 @@ class Extend extends Component {
     }
 }
 
-Extend.propTypes = {
+Weekly.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Extend);
+export default withStyles(styles)(Weekly);

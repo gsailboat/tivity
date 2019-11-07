@@ -49,17 +49,38 @@ class Current extends Component {
     renderCurrent() {
         if (this.state.time === "Today's Points") {
             return (
-                "Wonderful in the neighborhood"
+                <Card>
+                    <CardHeader
+                        title="Points"
+                    />
+                    <CardContent>
+                        Points Earned Today
+                    </CardContent>
+                </Card>
             )
         }
         else if (this.state.time === "This Week's Points") {
             return (
-                "Swell"
+                <Card>
+                    <CardHeader
+                        title="Points"
+                    />
+                    <CardContent>
+                        Points Earned This Week
+                    </CardContent>
+                </Card>
             )
         }
         else {
             return (
-                "Yep"
+                <Card>
+                    <CardHeader
+                        title="Points"
+                    />
+                    <CardContent>
+                        Points Earned This Month
+                    </CardContent>
+                </Card>
             )
         }
     }
@@ -86,7 +107,6 @@ class Current extends Component {
                     >
                     </CardHeader>
                     <CardContent>
-                        <h1>Hello</h1>
                         {this.renderCurrent()}
                     </CardContent>
                 </Card>

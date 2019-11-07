@@ -5,6 +5,7 @@ import { CssBaseline} from '@material-ui/core';
 import { MuiThemeProvider} from '@material-ui/core/styles';
 import Extend from './components/Extend';
 import Points from './components/Points';
+import Weekly from './components/Weekly';
 
 // const styles = theme => ({
 //   home: {
@@ -26,6 +27,7 @@ class App extends Component {
             <div className="Background">
               <Points/>
               <Extend/>
+              <Weekly/>
             </div>
           </MuiThemeProvider>
       </React.Fragment>

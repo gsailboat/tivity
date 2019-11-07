@@ -13,12 +13,12 @@ const styles = theme => ({
         backgroundColor: Theme.palette.secondary.main
     },
     tab: {
-        backgroundColor: "#707070",
+        backgroundColor: "#c0c0c0",
         color: Theme.palette.primary.contrastText
     },
     head: {
         margin: 'auto',
-        padding: '10vh'
+        padding: '8vh'
     },
     title: {
         fontFamily: "'Pacifico', cursive",
